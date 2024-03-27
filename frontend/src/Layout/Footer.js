@@ -1,6 +1,9 @@
-import {  Button, Stack, TextField, Typography } from '@mui/material'
+import {  Button, IconButton, Stack, TextField, Typography } from '@mui/material'
 import React from 'react'
-
+import InstagramIcon from '@mui/icons-material/Instagram';
+import XIcon from '@mui/icons-material/X';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import FacebookIcon from '@mui/icons-material/Facebook';
 export default function Footer() {
   // const boxes = [1, 2, 3, 4, 5];
 
@@ -36,12 +39,17 @@ export default function Footer() {
         </Stack> */}
         <Stack sx={{backgroundColor:"#f6f6f6"}} flexDirection='column' height='100%' alignItems='center' justifyContent='center' gap='2.5em' padding='3em 1.5em' width={{sm:"97%" , xs:"auto"}}>
         <Stack height='100%' justifyContent={{lg:"space-evenly" , xs:"start"}} alignItems={{lg:"center" , xs:"start"}} flexDirection={{lg:"row" , xs:"column"}} gap={{lg:"0" , xs:"2em"}}  >
-           <Stack flexDirection='column' gap='0.5em' >
+           <Stack flexDirection='column' gap='0.5em' justifyContent='start' alignItems='start' >
            <Typography fontSize={{sm:"32px" , xs:"15px"}}>Your Logo Here</Typography>
            <Typography fontSize='13px' color='#929292' width={{sm:"80%" , xs:"auto"}}>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
 vel illum dolore eu feugiat nulla facilisis.</Typography>
-<Typography fontSize={{sm:"16px" , xs:"14px"}} color='#292929' marginTop='1em'>Follow Us On Social:</Typography>
-   
+<Typography fontSize={{sm:"16px" , xs:"14px"}} fontWeight='700' color='#292929' marginTop='1em'>Follow Us On Social:</Typography>
+   <Stack flexDirection='row' gap='0.7em'>
+   <IconButton><FacebookIcon/></IconButton>
+   <IconButton><XIcon/></IconButton>
+   <IconButton><LinkedInIcon/></IconButton>
+   <IconButton><InstagramIcon/></IconButton>
+   </Stack>
            </Stack>
            <Stack flexDirection={{sm:"row"  ,xs:"column"}} gap={{sm:"3.2em" , xs:"1.5em"}}>
              <Stack flexDirection='column' gap='1.5em'>
