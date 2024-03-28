@@ -3,6 +3,9 @@ import { Button, Card, Divider, Stack, Typography } from '@mui/material';
 import React from 'react';
 
 export default function Login() {
+  const handleGoogleSignUp = () => {
+    window.location.href = "http://localhost:5000/auth/google";
+  };  
   return (
     <>
       <Card sx={{ display: "flex", flexDirection: "column", padding: "1.2em 2.2em", width: "50%", height: "20em", gap: "2em" }}>
@@ -25,5 +28,5 @@ export default function Login() {
           <Stack flexDirection='row' justifyContent='space-evenly' ></Stack>
       </Card>
     </>
-  )
+  );
 }
