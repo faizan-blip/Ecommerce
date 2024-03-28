@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeroSlider from './HeroSlider';
 import { Avatar, Box, Button, Divider, Stack, Typography } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -26,14 +26,21 @@ const box =[
   { icon:"/secure.png" , text:"SECUREE PAYMENTS" , describe:"Safe, Fast & Secure"},
 ]
 const prod = [
-  {icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50"   , like:<FavoriteBorderIcon fontSize='13px'/>},
-  {icon:"/vass.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
-  {icon:"/chairs2.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
-  {icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
-  {icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
-  {icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
-  {icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
-  {icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"NewArrival",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50"   , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"NewArrival",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50"   , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"NewArrival",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50"   , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"NewArrival",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50"   , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"NewArrival",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50"   , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"NewArrival",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50"   , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"NewArrival",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50"   , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"NewArrival",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50"   , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"BestSeller",icon:"/vass.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"BestSeller",icon:"/chairs2.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"SaleItem",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"BestSeller",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"SaleItem",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"Onsale",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , dis:"-10%" , desrate:"AED 48.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
+  {category:"Onsale",icon:"/chairs.png" , tag:"New" , text:"Wooden decorations" , describe:"AED 38.50" , like:<FavoriteBorderIcon fontSize='13px'/>},
 ]
 const news = [
   {icon:"/news.png" , text:"Interior design is the art.",  date:"16 March" , button:"Read More" , describe:"Lorem ipsum dolor sit amet, consectetur adipi elit, sed."},
@@ -42,6 +49,31 @@ const news = [
 ]
 
 export default function Home() {
+ 
+  const newArrivals = prod.filter(product => product.category === "NewArrival");
+  const bestSellers = prod.filter(product => product.category === "BestSeller");
+  const saleItems = prod.filter(product => product.category === "SaleItem");
+  const onSales = prod.filter(product => product.category === "Onsale");
+  const [filteredProducts, setFilteredProducts] = useState(newArrivals);
+  const handleTypographyClick = (category) => {
+    switch (category) {
+      case 'NewArrival':
+        setFilteredProducts(newArrivals);
+        break;
+      case 'BestSeller':
+        setFilteredProducts(bestSellers);
+        break;
+      case 'SaleItem':
+        setFilteredProducts(saleItems);
+        break;
+      case 'Onsale':
+        setFilteredProducts(onSales);
+        break;
+      default:
+        setFilteredProducts(prod);
+        break;
+    }
+  };
   return (
     <>
       <HeroSlider />
@@ -82,16 +114,16 @@ export default function Home() {
       <Typography color='#212121' fontSize={{md:"34px" , sm:"26px" , xs:"20px"}} fontWeight='700'>Our Products</Typography>
       <Typography color='#474747' fontSize='16px' width={{md:"27em" , xs:"auto"}} textAlign='center'>Torem ipsum dolor sit amet, consectetur adipisicing elitsed do
 eiusmo tempor incididunt ut labore</Typography>
-<Stack flexDirection='row' gap={{sm:"1em" , xs:"1.5em"}} marginTop='0.5em' flexWrap='wrap'>
-<Typography color='#FF7004' fontSize='16px'>New Arrivals</Typography>
-<Typography color='#474747' fontSize='16px'>Best Sellers</Typography>
-<Typography color='#474747' fontSize='16px'>Sale Items</Typography>
-<Typography color='#474747' fontSize='16px'>On Sales</Typography>
+<Stack flexDirection='row' gap={{sm:"1em" , xs:"0.8em"}} marginTop='0.5em' flexWrap='wrap'>
+<Typography sx={{cursor:"pointer"}}  color={filteredProducts[0]?.category === 'NewArrival' ? '#FF7004' : '#474747'} fontSize={{sm:"16px" , xs:"14px"}}  onClick={() => handleTypographyClick('NewArrival')}>New Arrivals</Typography>
+<Typography sx={{cursor:"pointer"}}  color={filteredProducts[0]?.category === 'BestSeller' ? '#FF7004' : '#474747'} fontSize={{sm:"16px" , xs:"14px"}}  onClick={() => handleTypographyClick('BestSeller')}>Best Sellers</Typography>
+<Typography sx={{cursor:"pointer"}}  color={filteredProducts[0]?.category === 'SaleItem' ? '#FF7004' : '#474747'} fontSize={{sm:"16px" , xs:"14px"}}  onClick={() => handleTypographyClick('SaleItem')}>Sale Items</Typography>
+<Typography sx={{cursor:"pointer"}}  color={filteredProducts[0]?.category === 'Onsale' ? '#FF7004' : '#474747'}fontSize={{sm:"16px" , xs:"14px"}}  onClick={() => handleTypographyClick('Onsale')}>On Sales</Typography>
 </Stack>
-<Stack flexDirection='row' gap='3em' flexWrap='wrap' marginTop='1em'>
+<Stack flexDirection='row' gap='4em' flexWrap='wrap' marginTop='1em'>
 {
-  prod.map((pro , index)=>(
-    <Stack key={index} flexGrow='1' width='250px' height='auto'  flexDirection='column' position='relative' alignItems='center'>
+  filteredProducts.map((pro , index)=>(
+    <Stack key={index}  width={{sm:"250px" , xs:"100%"}} height='auto'  flexDirection='column' position='relative' alignItems='center'>
        <Box component='img' src={pro.icon} sx={{width:"100%" , minWidth:"300px" , minHeight:"300px"}}/>
        {
        pro.dis && pro.dis.length > 0 &&
@@ -104,6 +136,7 @@ eiusmo tempor incididunt ut labore</Typography>
     </Stack>
   ))
 }
+
 </Stack>
 <Stack marginTop='2.5em' flexDirection='row' gap='1.2em' flexWrap={{md:"nowrap" , xs:"wrap"}}>
 <Box component='img' src='/black.png' sx={{width:"50%" , minWidth:"300px" , minHeight:"250px" , flexGrow:"1"}}/>
